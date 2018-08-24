@@ -1,5 +1,6 @@
 package sks.talent;
 
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
@@ -29,21 +30,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editText = (EditText)findViewById(R.id.edit_msg);
-        showView = (TextView)findViewById(R.id.show_msg);
-        recordButton = (Button)findViewById(R.id.bt_record);
+        editText = (EditText) findViewById(R.id.edit_msg);
+        showView = (TextView) findViewById(R.id.show_msg);
+        recordButton = (Button) findViewById(R.id.bt_record);
         ButtonListener b = new ButtonListener();
         recordButton.setOnClickListener(b);
         recordButton.setOnTouchListener(b);
         recordFile = new File("/mnt/sdcard", "record.amr");
     }
-    public void startRecording(View view){
+
+    public void startRecording(View view) {
+        PermissionUtils.checkPermissions(this, new Runnable() {
+            @Override
+            public void run() {
+                //权限申请成功，开始录音
+                realStartRecording();
+            }
+        });
+    }
+
+    private void realStartRecording() {
         mediaRecorder = new MediaRecorder();
-        if(recordFile.exists()) {
+        if (recordFile.exists()) {
             recordFile.delete();
         }
+        mediaRecorder.reset();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        /*//设置音频来源为麦克风
+        //设置音频来源为麦克风
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
         //默认的输出格式和编码方式
@@ -57,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
-        */
     }
-    public void stop_play(View view){
+
+    public void stop_play(View view) {
         String str = null;
 
         if (recordFile != null) {
@@ -67,32 +80,73 @@ public class MainActivity extends AppCompatActivity {
             mediaRecorder.release();
         }
         str = showView.getText().toString();
-        showView.setText(str+"\n"+"录音结束！");
+        showView.setText(str + "\n" + "录音结束！");
+
+        playRecordImmediately(recordFile.getAbsolutePath());
+    }
+
+    /**
+     * 播放录音
+     *
+     * @param path 录音位置
+     */
+    private void playRecordImmediately(String path) {
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        }
+
+        try {
+            mediaPlayer.reset();
+            mediaPlayer.setDataSource(this, Uri.parse(path));
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaRecorder != null) {
+            mediaRecorder.release();
+
+        }
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
     }
 
     class ButtonListener implements View.OnClickListener, View.OnTouchListener {
         private String str = null;
 
-        public void onClick(View v) {}
+        public void onClick(View v) {
+        }
+
         public boolean onTouch(View v, MotionEvent event) {
 
             if (v.getId() == R.id.bt_record) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    //stop_play();
-                    //recordButton.setBackgroundResource(R.drawable.green);
+                    stop_play(v);
+                    recordButton.setBackgroundColor(Color.GREEN);
+//                    recordButton.setBackgroundResource(R.drawable.green);
                 }
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     str = showView.getText().toString();
-                    showView.setText(str+"\n"+"开始录音……");
-                    //startRecording();
-                    //recordButton.setBackgroundResource(R.drawable.yellow);
+                    showView.setText(str + "\n" + "开始录音……");
+                    startRecording(v);
+                    recordButton.setBackgroundColor(Color.YELLOW);
+//                    recordButton.setBackgroundResource(R.drawable.yellow);
                 }
             }
             return false;
         }
     }
 
-    /** Called when the user clicks the Send button */
+    /**
+     * Called when the user clicks the Send button
+     */
     public void sendMessage(View view) {
         /*
         Intent intent = new Intent(this, DisplayMessageActivity.class);
@@ -127,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         }*/
         String msg = editText.getText().toString();
         String str = showView.getText().toString();
-        showView.setText(str+"\n"+msg);
+        showView.setText(str + "\n" + msg);
         editText.setText("");
     }
 }
