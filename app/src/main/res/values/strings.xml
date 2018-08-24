@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Talent</string>
+    <string name="edit_msg">请输入你想说的话</string>
+    <string name="show_msg">记录你的输入：</string>
+    <string name="button_send">提交--></string>
+    <string name="button_record">按住说话</string>
+    <string name="action_settings">设置</string>
+    <string name="title_activity_display_message">DisplayMessage</string>
+</resources>

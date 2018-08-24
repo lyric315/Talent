@@ -1,0 +1,45 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AndroidLintAssert" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintInflateParams" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintParcelClassLoader" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AssignmentToNull" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="BadExceptionCaught" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ConditionalExpression" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ConstantConditions" enabled="true" level="ERROR" enabled_by_default="true">
+      <option name="SUGGEST_NULLABLE_ANNOTATIONS" value="false" />
+      <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="false" />
+    </inspection_tool>
+    <inspection_tool class="EqualsReplaceableByObjectsCall" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="IfCanBeSwitch" enabled="true" level="ERROR" enabled_by_default="true">
+      <option name="minimumBranches" value="3" />
+      <option name="suggestIntSwitches" value="false" />
+      <option name="suggestEnumSwitches" value="false" />
+    </inspection_tool>
+    <inspection_tool class="IfMayBeConditional" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="LiteralAsArgToStringEquals" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NegatedConditional" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NegatedIfElse" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NullArgumentToVariableArgMethod" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="NullThrown" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NullableProblems" enabled="true" level="ERROR" enabled_by_default="true">
+      <option name="REPORT_NULLABLE_METHOD_OVERRIDES_NOTNULL" value="true" />
+      <option name="REPORT_NOT_ANNOTATED_METHOD_OVERRIDES_NOTNULL" value="true" />
+      <option name="REPORT_NOTNULL_PARAMETER_OVERRIDES_NULLABLE" value="true" />
+      <option name="REPORT_NOT_ANNOTATED_PARAMETER_OVERRIDES_NOTNULL" value="true" />
+      <option name="REPORT_NOT_ANNOTATED_GETTER" value="true" />
+      <option name="REPORT_NOT_ANNOTATED_SETTER_PARAMETER" value="true" />
+      <option name="REPORT_ANNOTATION_NOT_PROPAGATED_TO_OVERRIDERS" value="true" />
+      <option name="REPORT_NULLS_PASSED_TO_NON_ANNOTATED_METHOD" value="true" />
+    </inspection_tool>
+    <inspection_tool class="ObjectEquality" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ObjectEqualsNull" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PointlessNullCheck" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ReturnNull" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SimplifiableEqualsExpression" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="UnaryPlus" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="UnnecessaryToStringCall" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="VariableNotUsedInsideIf" enabled="false" level="ERROR" enabled_by_default="false" />
+  </profile>
+</component>
